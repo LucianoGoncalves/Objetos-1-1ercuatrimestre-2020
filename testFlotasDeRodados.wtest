@@ -1,0 +1,64 @@
+import dependencia.*
+import rodados.*
+import trafic.*
+
+describe "dependencias deportes" {
+test "Autos de deporte "{
+        const deportes = new Dependencia()
+        deportes.setEmpleados(45)
+        const cachito = new ChevroletCorsa()
+        const che1 = new ChevroletCorsa()
+        const che2 = new ChevroletCorsa()
+        const rena1 = new RenaultKwid()
+        const batMovil = new Especial()
+        cachito.setColor("rojo")
+        che1.setColor("azul")
+        che2.setColor("verde")
+        rena1.setTanque(conTanque)
+        batMovil.setCapacidad(5)
+        batMovil.setVelocidad(160)
+        batMovil.setPeso(1200)
+        batMovil.setColor("beige")
+        deportes.agregarAFlota(cachito)
+        deportes.agregarAFlota(che1)
+        deportes.agregarAFlota(che2)
+        deportes.agregarAFlota(rena1)
+        deportes.agregarAFlota(batMovil)
+        
+        assert.equals(6450, deportes.pesoTotalFlota())
+        assert.that(deportes.estaBienEquipada())
+        assert.equals(7, deportes.capacidadTotalEnColor("azul"))
+        assert.that(deportes.colorDelRodadoMasRapido() == "beige")
+        assert.that(deportes.esGrande())
+        assert.equals(25, deportes.capacidadFaltante())
+    }
+}
+
+describe "dependencias cultura" {
+    test "Autos de cultura"{
+        const cultura = new Dependencia()
+        cultura.setEmpleados(31)
+        const cachito = new ChevroletCorsa()
+        const rena1 = new RenaultKwid()
+        const rena2 = new RenaultKwid()
+        const rena3 = new RenaultKwid()
+        cachito.setColor("rojo")
+        rena1.setTanque(conTanque)
+        rena2.setTanque(conTanque)
+        rena3.setTanque(sinTanque)
+        trafic.setInterior(interiorPopular)
+        trafic.setMotor(motorBataton)
+        cultura.agregarAFlota(cachito)
+        cultura.agregarAFlota(rena1)
+        cultura.agregarAFlota(rena2)
+        cultura.agregarAFlota(rena3)
+        cultura.agregarAFlota(trafic)
+        
+        assert.equals(10700, cultura.pesoTotalFlota())
+        assert.notThat(cultura.estaBienEquipada())
+        assert.equals(10, cultura.capacidadTotalEnColor("azul"))
+        assert.that(cultura.colorDelRodadoMasRapido() == "rojo")
+        assert.notThat(cultura.esGrande())
+        assert.equals(5, cultura.capacidadFaltante())
+    }
+}
